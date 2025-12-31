@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy New Year ✨</title> <!-- EDIT this later if you want -->
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;
+         display:flex;min-height:100vh;align-items:center;justify-content:center;
+         background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff}
+    .card{max-width:520px;padding:24px;border-radius:12px;background:rgba(255,255,255,0.06);text-align:center}
+    h1{margin:0 0 8px;font-size:22px}
+    p{margin:0 0 14px;color:#dbeafe}
+    .btn{background:#ffd6a5;color:#061124;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block}
+    .secret{display:none;margin-top:12px;color:#ffe6c2}
+    footer{margin-top:14px;font-size:13px;color:#94a3b8}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Happy New Year ✨</h1> <!-- EDIT this heading later -->
+    <p>Tap the button for a little message I made.</p>
+
+    <a class="btn" id="openBtn" href="javascript:void(0)">Open message</a>
+
+    <div class="secret" id="secret">
+      <!-- EDIT this personal message later -->
+      <p id="personalMessage">Hey — I was thinking of you. Would you like to celebrate New Year together?</p>
+
+      <p style="margin-top:10px">
+        <a id="messengerLink" class="btn" href="#" target="_blank" rel="noopener">Reply on Messenger</a>
+      </p>
+    </div>
+
+    <footer>— From me</footer>
+  </div>
+
+<script>
+// show the hidden message when button clicked
+document.getElementById('openBtn').addEventListener('click', function(){
+  document.getElementById('secret').style.display = 'block';
+  this.style.display = 'none';
+});
+
+// Optional: put your crush's Messenger username here (no @) to make the button go to their chat
+var username = ''; // e.g. 'john.doe'
+var messengerLink = document.getElementById('messengerLink');
+var currentUrl = encodeURIComponent(location.href);
+
+if (username.trim()) {
+  messengerLink.href = 'https://m.me/' + encodeURIComponent(username.trim());
+} else {
+  messengerLink.href = 'fb-messenger://share?link=' + currentUrl;
+  messengerLink.onclick = function(){
+    setTimeout(function(){
+      if (!navigator.userAgent.match(/Mobi/)) {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + currentUrl, '_blank');
+      }
+    }, 120);
+  };
+}
+</script>
+</body>
+</html>
